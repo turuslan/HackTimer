@@ -1,7 +1,8 @@
 (function (workerScript) {
 	var worker,
 		fakeIdToCallback = {},
-		lastFakeId = 0;
+		lastFakeId = 0,
+		logPrefix = 'HackTimer.js by turuslan: ';
 	if (typeof (Worker) !== 'undefined') {
 		function getFakeId () {
 			lastFakeId ++;
@@ -57,8 +58,8 @@
 				if (typeof (callback) === 'string') {
 					try {
 						callback = new Function (callback);
-					} catch (e) {
-						console.error(e);
+					} catch (error) {
+						console.log (logPrefix + 'Error parsing callback code string: ', error);
 					}
 				}
 				if (typeof (callback) === 'function') {
@@ -66,14 +67,14 @@
 				}
 			};
 			worker.onerror = function (event) {
-				console.log(event);
+				console.log (event);
 			};
-			console.log('HackTimer.js by turuslan: Initialisation succeeded');
+			console.log (logPrefix + 'Initialisation succeeded');
 		} catch (error) {
-			console.log('HackTimer.js by turuslan: Initialisation failed');
-			console.error(error);
+			console.log (logPrefix + 'Initialisation failed');
+			console.error (error);
 		}
 	} else {
-		console.log('HackTimer.js by turuslan: Initialisation failed - HTML5 Web Worker is not supported');
+		console.log (logPrefix + 'Initialisation failed - HTML5 Web Worker is not supported');
 	}
 })('HackTimerWorker.js');
