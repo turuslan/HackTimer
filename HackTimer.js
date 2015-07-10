@@ -10,9 +10,12 @@
 		}
 		try {
 			worker = new Worker (workerScript);
-			window.setInterval = function (callback, time) {
+			window.setInterval = function (callback, time /* , parameters */) {
 				var fakeId = getFakeId ();
-				fakeIdToCallback[fakeId] = callback;
+				fakeIdToCallback[fakeId] = {
+					callback: callback,
+					parameters: Array.prototype.slice.call(arguments, 2)
+				};
 				worker.postMessage ({
 					name: 'setInterval',
 					fakeId: fakeId,
@@ -29,9 +32,12 @@
 					});
 				}
 			};
-			window.setTimeout = function (callback, time) {
+			window.setTimeout = function (callback, time /* , parameters */) {
 				var fakeId = getFakeId ();
-				fakeIdToCallback[fakeId] = callback;
+				fakeIdToCallback[fakeId] = {
+					callback: callback,
+					parameters: Array.prototype.slice.call(arguments, 2)
+				};
 				worker.postMessage ({
 					name: 'setTimeout',
 					fakeId: fakeId,
@@ -51,9 +57,13 @@
 			worker.onmessage = function (event) {
 				var data = event.data,
 					fakeId = data.fakeId,
+					request,
+					parameters,
 					callback;
 				if (fakeIdToCallback.hasOwnProperty(fakeId)) {
-					callback = fakeIdToCallback[fakeId];
+					request = fakeIdToCallback[fakeId];
+					callback = request.callback;
+					parameters = request.parameters;
 				}
 				if (typeof (callback) === 'string') {
 					try {
@@ -63,7 +73,7 @@
 					}
 				}
 				if (typeof (callback) === 'function') {
-					callback.call (window);
+					callback.apply (window, parameters);
 				}
 			};
 			worker.onerror = function (event) {
