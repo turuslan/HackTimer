@@ -14,17 +14,24 @@ onmessage = function (event) {
 			}, time);
 			break;
 		case 'clearInterval':
-			clearInterval(fakeIdToId[fakeId]);
-			delete fakeIdToId[fakeId];
+			if (fakeIdToId.hasOwnProperty (fakeId)) {
+				clearInterval(fakeIdToId[fakeId]);
+				delete fakeIdToId[fakeId];
+			}
 			break;
 		case 'setTimeout':
 			fakeIdToId[fakeId] = setTimeout(function () {
 				postMessage({fakeId: fakeId});
+				if (fakeIdToId.hasOwnProperty (fakeId)) {
+					delete fakeIdToId[fakeId];
+				}
 			}, time);
 			break;
 		case 'clearTimeout':
-			clearTimeout(fakeIdToId[fakeId]);
-			delete fakeIdToId[fakeId];
+			if (fakeIdToId.hasOwnProperty (fakeId)) {
+				clearTimeout(fakeIdToId[fakeId]);
+				delete fakeIdToId[fakeId];
+			}
 			break;
 	}
 }
