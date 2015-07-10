@@ -11,3 +11,6 @@ To change worker code script name go to the end of HackTimer.js (or HackTimer.mi
 
 # Warning
 Full code (HackTimer.js and HackTimerWorker.js) must not be used with minified (HackTimer.min.js and HackTimerWorker.min.js), i.e. HackTimer.js must use only HackTimerWorker.js and HackTimer.min.js must only use HackTimerWorker.min.js .
+
+HackTimer.silent.min.js writes to log only if initialisation failed.
+Use it with HackTimerWorker.min.js .
