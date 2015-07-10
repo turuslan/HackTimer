@@ -21,11 +21,13 @@
 				return fakeId;
 			};
 			window.clearInterval = function (fakeId) {
-				delete fakeIdToCallback[fakeId];
-				worker.postMessage ({
-					name: 'clearInterval',
-					fakeId: fakeId
-				});
+				if (fakeIdToCallback.hasOwnProperty(fakeId)) {
+					delete fakeIdToCallback[fakeId];
+					worker.postMessage ({
+						name: 'clearInterval',
+						fakeId: fakeId
+					});
+				}
 			};
 			window.setTimeout = function (callback, time) {
 				var fakeId = getFakeId ('t-');
@@ -38,17 +40,24 @@
 				return fakeId;
 			};
 			window.clearTimeout = function (fakeId) {
-				delete fakeIdToCallback[fakeId];
-				worker.postMessage ({
-					name: 'clearTimeout',
-					fakeId: fakeId
-				});
+				if (fakeIdToCallback.hasOwnProperty(fakeId)) {
+					delete fakeIdToCallback[fakeId];
+					worker.postMessage ({
+						name: 'clearTimeout',
+						fakeId: fakeId
+					});
+				}
 			};
 			worker.onmessage = function (event) {
 				var data = event.data,
 					fakeId = data.fakeId,
+					callback;
+				if (fakeIdToCallback.hasOwnProperty(fakeId)) {
 					callback = fakeIdToCallback[fakeId];
-				callback.call (window);
+				}
+				if (typeof (callback) === 'function') {
+					callback.call (window);
+				}
 			};
 			worker.onerror = function (event) {
 				console.log(event);
