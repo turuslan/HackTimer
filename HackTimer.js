@@ -1,4 +1,6 @@
-var blob = new Blob(["\
+(function (workerScript) {
+	try {
+		var blob = new Blob (["\
 var fakeIdToId = {};\
 onmessage = function (event) {\
 	var data = event.data,\
@@ -37,10 +39,11 @@ onmessage = function (event) {\
 	}\
 }\
 "]);
-// Obtain a blob URL reference to our worker 'file'.
-var blobURL = window.URL.createObjectURL(blob);
-
-(function (workerScript) {
+		// Obtain a blob URL reference to our worker 'file'.
+		workerScript = window.URL.createObjectURL(blob);
+	} catch (error) {
+		/* Blob is not supported, use external script instead */
+	}
 	var worker,
 		fakeIdToCallback = {},
 		lastFakeId = 0,
@@ -129,4 +132,4 @@ var blobURL = window.URL.createObjectURL(blob);
 	} else {
 		console.log (logPrefix + 'Initialisation failed - HTML5 Web Worker is not supported');
 	}
-})(blobURL);
+}) ('HackTimerWorker.js');
