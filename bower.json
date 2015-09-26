@@ -1,0 +1,26 @@
+{
+  "name": "HackTimer",
+  "main": "HackTimer.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/turuslan/HackTimer",
+  "authors": [
+    "turuslan <turuslan.devbox@gmail.com>"
+  ],
+  "description": "Avoid timers throttling by browser when tab is inactive",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "suspend",
+    "slow",
+    "throttle",
+    "timer",
+    "interval",
+    "timeout",
+    "browser",
+    "chrome",
+    "background",
+    "inactive"
+  ],
+  "license": "MIT"
+}
