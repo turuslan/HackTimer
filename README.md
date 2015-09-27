@@ -4,6 +4,11 @@ Avoid timers throttling by browser when tab is inactive
 # Usage:
 Place script reference to **HackTimer.js** (or HackTimer.min.js) before any other JavaScript
 
+# NPM
+Command: `npm install hacktimer --reg https://www.myget.org/F/hack-timer/npm`
+
+Registry URL: https://www.myget.org/F/hack-timer/npm
+
 # Bower
 Command: `bower install hacktimer`
 
