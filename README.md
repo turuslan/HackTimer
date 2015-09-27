@@ -4,6 +4,23 @@ Avoid timers throttling by browser when tab is inactive
 # Usage:
 Place script reference to **HackTimer.js** (or HackTimer.min.js) before any other JavaScript
 
+# Bower
+Command: `bower install hacktimer`
+
+Registry: https://www.myget.org
+
+You can specify bower registry in file `.bowerrc` in your working directory
+```json
+{
+  "registry": {
+      "search": [
+          "https://www.myget.org",
+          "https://bower.herokuapp.com"
+      ]
+  }
+}
+```
+
 # Notes
 Loader code **HackTimer.js** (or HackTimer.min.js) may be placed in separate file or in script tag.
 
