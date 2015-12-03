@@ -47,10 +47,17 @@ onmessage = function (event) {\
 	var worker,
 		fakeIdToCallback = {},
 		lastFakeId = 0,
+		maxFakeId = 0x7FFFFFFF, // 2 ^ 31 - 1, 31 bit, positive values of signed 32 bit integer
 		logPrefix = 'HackTimer.js by turuslan: ';
 	if (typeof (Worker) !== 'undefined') {
 		function getFakeId () {
-			lastFakeId ++;
+			while (fakeIdToCallback.hasOwnProperty (lastFakeId)) {
+				if (lastFakeId == maxFakeId) {
+					lastFakeId = 0;
+				} else {
+					lastFakeId ++;
+				}
+			}
 			return lastFakeId;
 		}
 		try {
@@ -81,7 +88,8 @@ onmessage = function (event) {\
 				var fakeId = getFakeId ();
 				fakeIdToCallback[fakeId] = {
 					callback: callback,
-					parameters: Array.prototype.slice.call(arguments, 2)
+					parameters: Array.prototype.slice.call(arguments, 2),
+					isTimeout: true
 				};
 				worker.postMessage ({
 					name: 'setTimeout',
@@ -109,6 +117,9 @@ onmessage = function (event) {\
 					request = fakeIdToCallback[fakeId];
 					callback = request.callback;
 					parameters = request.parameters;
+					if (request.hasOwnProperty ('isTimeout') && request.isTimeout) {
+						delete fakeIdToCallback[fakeId];
+					}
 				}
 				if (typeof (callback) === 'string') {
 					try {
