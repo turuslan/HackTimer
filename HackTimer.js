@@ -51,13 +51,13 @@ onmessage = function (event) {\
 		logPrefix = 'HackTimer.js by turuslan: ';
 	if (typeof (Worker) !== 'undefined') {
 		function getFakeId () {
-			while (fakeIdToCallback.hasOwnProperty (lastFakeId)) {
+			do {
 				if (lastFakeId == maxFakeId) {
 					lastFakeId = 0;
 				} else {
 					lastFakeId ++;
 				}
-			}
+			} while (fakeIdToCallback.hasOwnProperty (lastFakeId));
 			return lastFakeId;
 		}
 		try {
