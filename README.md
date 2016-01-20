@@ -7,10 +7,14 @@ Place script reference to **HackTimer.js** (or HackTimer.min.js) before any othe
 # NPM
 Command: `npm install hacktimer --reg https://www.myget.org/F/hack-timer/npm`
 
+Latest version is 1.1.0
+
 Registry URL: https://www.myget.org/F/hack-timer/npm
 
 # Bower
 Command: `bower install hacktimer`
+
+Latest version is 1.1.0
 
 Registry: https://www.myget.org/F/hack-timer/bower/
 
