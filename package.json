@@ -1,6 +1,6 @@
 {
   "name": "hacktimer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Avoid timers throttling by browser when tab is inactive",
   "main": "HackTimer.js",
   "scripts": {
@@ -27,5 +27,5 @@
   "bugs": {
     "url": "https://github.com/turuslan/HackTimer/issues"
   },
-  "homepage": "https://github.com/turuslan/HackTimer#readme"
+  "homepage": "https://github.com/turuslan/HackTimer"
 }
