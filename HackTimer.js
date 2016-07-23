@@ -1,6 +1,7 @@
 (function (workerScript) {
-	try {
-		var blob = new Blob (["\
+	if (!/MSIE 10/i.test (navigator.userAgent)) {
+		try {
+			var blob = new Blob (["\
 var fakeIdToId = {};\
 onmessage = function (event) {\
 	var data = event.data,\
@@ -39,10 +40,11 @@ onmessage = function (event) {\
 	}\
 }\
 "]);
-		// Obtain a blob URL reference to our worker 'file'.
-		workerScript = window.URL.createObjectURL(blob);
-	} catch (error) {
-		/* Blob is not supported, use external script instead */
+			// Obtain a blob URL reference to our worker 'file'.
+			workerScript = window.URL.createObjectURL(blob);
+		} catch (error) {
+			/* Blob is not supported, use external script instead */
+		}
 	}
 	var worker,
 		fakeIdToCallback = {},
