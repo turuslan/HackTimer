@@ -6,7 +6,7 @@ Place script reference to **HackTimer.js** (or HackTimer.min.js) before any othe
 This includes library's such as jQuery as otherwise timed events such as fadeOut and fadeIn will break.
 
 # NPM
-Command: `npm install hacktimer --reg https://www.myget.org/F/hack-timer/npm`
+Command: `npm install hacktimer`
 
 Latest version is 1.1.0
 
