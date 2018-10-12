@@ -137,7 +137,6 @@ onmessage = function (event) {\
 			worker.onerror = function (event) {
 				console.log (event);
 			};
-			console.log (logPrefix + 'Initialisation succeeded');
 		} catch (error) {
 			console.log (logPrefix + 'Initialisation failed');
 			console.error (error);
