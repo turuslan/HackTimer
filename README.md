@@ -1,11 +1,32 @@
-# Deprecated
-## Use [chrisguttandin/worker-timers](https://github.com/chrisguttandin/worker-timers) instead
-Use monkey-patching to replace default `window.setInterval`, `window.clearInterval`, `window.setTimeout`, `window.clearTimeout`.
+# HackTimer
+Avoid timers throttling by browser when tab is inactive
 
-```js
-import * as workerTimers from 'worker-timers';
-window.setInterval = workerTimers.setInterval;
-window.clearInterval = workerTimers.clearInterval;
-window.setTimeout = workerTimers.setTimeout;
-window.clearTimeout = workerTimers.clearTimeout;
+# Usage:
+Place script reference to **HackTimer.js** (or HackTimer.min.js) before any other JavaScript.
+This includes library's such as jQuery as otherwise timed events such as fadeOut and fadeIn will break.
+
+# NPM
+Command: `npm install hacktimer`
+
+Latest version is 1.1.0
+
+Registry URL: https://www.myget.org/F/hack-timer/npm
+
+# Bower
+Command: `bower install hacktimer`
+
+Latest version is 1.1.0
+
+Registry: https://www.myget.org/F/hack-timer/bower/
+
+You can specify bower registry in file `.bowerrc` in your working directory
+```json
+{
+  "registry": {
+      "search": [
+          "https://www.myget.org/F/hack-timer/bower/",
+          "https://bower.herokuapp.com"
+      ]
+  }
+}
 ```

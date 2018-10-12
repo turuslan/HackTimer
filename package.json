@@ -1,14 +1,11 @@
 {
   "name": "hacktimer",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "Avoid timers throttling by browser when tab is inactive",
   "main": "HackTimer.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turuslan/HackTimer.git"
+    "url": "git+https://github.com/ctubio/HackTimer.git"
   },
   "keywords": [
     "suspend",
@@ -25,7 +22,7 @@
   "author": "turuslan <turuslan.devbox@gmail.com> (http://github.com/turuslan/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/turuslan/HackTimer/issues"
+    "url": "https://github.com/ctubio/HackTimer/issues"
   },
-  "homepage": "https://github.com/turuslan/HackTimer"
+  "homepage": "https://github.com/ctubio/HackTimer"
 }
