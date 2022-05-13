@@ -46,6 +46,9 @@ onmessage = function (event) {\
 			/* Blob is not supported, use external script instead */
 		}
 	}
+	var tabID = sessionStorage.tabID ?
+		sessionStorage.tabID :
+		sessionStorage.tabID = Math.random();
 	var worker,
 		fakeIdToCallback = {},
 		lastFakeId = 0,
@@ -60,7 +63,7 @@ onmessage = function (event) {\
 					lastFakeId ++;
 				}
 			} while (fakeIdToCallback.hasOwnProperty (lastFakeId));
-			return lastFakeId;
+			return tabID + ''+ lastFakeId;
 		}
 		try {
 			worker = new Worker (workerScript);
